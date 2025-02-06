@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta chatset="UTF-8">
+  <title>Мое! Приложение</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      color: grey;
+    }
+    #data {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Всем привет это мое приложение</h1>
+  <p>Ниже будут отображаться данные из БД</p>
+  <div id ="data">Загрузка...</div>
+
+  <!-- Скрипт для получения данных -->
+  <sctipt>
+    const apiUrl = "Моя ссылка"
+
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        const dataDiv = document.getElementByld("data");
+        dataDiv.innerHTML = "";
+        if (data.lenght === 0) {
+          dataDiv.innerHTML = "<p>Нет данных для отображения</p>;
+        } else {
+          const ul = document.createElement("ul");
+          data.forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = "ID: ${item.id}, Имя: ${item.name}, Email: ${item.email}";
+            ul.appendChild(li);
+          });
+          dataDiv.appendChild(ul);
+        }
+      })
+      .catch(error => {
+        document.getElementByld("data").innerHTML = "<p>Ошибка при получении данных</p>";
+        console.error("Ошибка:", error);
+      });
+  </sctipt>
+</body>
+</html>
